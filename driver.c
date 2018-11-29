@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 
 //separates the string based on the semicolons
@@ -86,15 +87,28 @@ void execute(char* input) {
 
 void redirectout(char *input) {
   char** separated = malloc(2 * sizeof(char *));
+  separated = separateinput(input);
   int fd = open(separated[1], O_CREAT | O_WRONLY, 0644);
+  int save = dup(STDOUT_FILENO);
+  dup2(fd, STDOUT_FILENO);
+  execute(separated[0]);
+  dup2(save, STDOUT_FILENO);
+  return;
 }
 
 void redirectin(char *input) {
-  
+  char** separated = malloc(2 * sizeof(char *));
+  separated = separateinput(input);
+  int fd = open(separated[1], O_RDONLY);
+  int save = dup(STDIN_FILENO);
+  dup2(fd, STDIN_FILENO);
+  execute(separated[0]);
+  dup2(save, STDIN_FILENO);
+  return;
 }
 
-void pipe(char *input) {
-
+void executepipe(char *input) {
+  return;
 }
 
 //checks if the executable string has a redirect or a pipe
@@ -133,7 +147,7 @@ int main() {
     while (separated[i]) {
       int c = check(separated[i]);
       if (!c) {
-	execute(separated([i]));
+	execute(separated[i]);
       }
       else if (c == 1) {
 	redirectout(separated[i]);
@@ -142,7 +156,7 @@ int main() {
 	redirectin(separated[i]);
       }
       else if (c == 3) {
-	pipe(separated[i]);
+	executepipe(separated[i]);
       }
       i++;
     }
