@@ -85,6 +85,7 @@ void execute(char* input) {
   return;
 }
 
+//redirects stdout
 void redirectout(char *input) {
   char** separated = malloc(2 * sizeof(char *));
   separated = separateinput(input);
@@ -96,6 +97,7 @@ void redirectout(char *input) {
   return;
 }
 
+//redirects stdin
 void redirectin(char *input) {
   char** separated = malloc(2 * sizeof(char *));
   separated = separateinput(input);
@@ -107,7 +109,17 @@ void redirectin(char *input) {
   return;
 }
 
+//executes pipes
 void executepipe(char *input) {
+  char** separated = malloc(2 * sizeof(char *));
+  separated = separateinput(input);
+  FILE *file = popen(separated[0], "r");
+  int fd = fileno(file);
+  int save = dup(STDIN_FILENO);
+  dup2(fd, STDIN_FILENO);
+  close(fd);
+  execute(separated[1]);
+  dup2(save, STDIN_FILENO);
   return;
 }
 
