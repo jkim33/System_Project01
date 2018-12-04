@@ -4,7 +4,7 @@
 
 ## Our Shell
 
-Our shell mimics what a standard bash shell can do, taking in user input and allowing the user to interact with the contents of their terminal and directories.
+Our shell mimics what a standard bash shell can do, taking in user input and allowing the user to interact with the contents of their terminal and directories. To test, simply type '''make test'''.
 
 ### Current Features
 
@@ -30,6 +30,8 @@ Features yet to be implemented:
   **_Stacking Redirection_** -- We have not fully implemented the redirection options, as the shell cannot mimic the standard shell with double redirection. e.g. `wc < foo > woo` will not fully execute on its own. In general, trying to stack multiple redirects or pipes will not work.
 
   **_Double Redirection_** -- Our shell only replaces the inputs that we provide for redirection, but is unable to append to the output. It is not capable of handling calls such as `<<` or `>>`.
+  
+  **_Inconsistent Printing_** -- Pipe seems to cause some issues when it is done executing. Typically, "Write a Command: " would be shown on a new line but at times, there are 2 instead or come before the pipe is finished. We suspect that fork() is the main cause of this but we have not yet fixed it. 
 
 ### Function Headers
 
