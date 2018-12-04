@@ -5,8 +5,14 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-//separates the string based on the semicolons
-//returns an array of executable strings
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Utilizes strsep to detect and split a string by semicolons and removes whitespaces
+Returns an array of executable strings
+
+Output: char **
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 char** separate(char* input) {
   char ** ret = malloc(128 * sizeof(char *));
   int i = 0;
@@ -27,7 +33,14 @@ char** separate(char* input) {
   return ret;
 }
 
-//used to separate executable strings with >, <, or |
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+Takes in a string of executables
+Separates the string by either a ">", ">", or "|"
+
+Outputs an array of executable terminal calls
+Output: char **
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 char** separateinput(char *input) {
   char ** ret = malloc(2 * sizeof(char *));
   int i = 0;
@@ -48,7 +61,13 @@ char** separateinput(char *input) {
   return ret;
 }
 
-//used to change directories (cd)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+Forks and changes the directory to the input value
+
+Returns a void as we are only modifying the directory
+Output: returns void
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void changedir(char* input) {
   int f = fork();
   if (f) {
@@ -61,7 +80,14 @@ void changedir(char* input) {
   return;
 }
 
-//executes all executable strings that don't involve a redirect or a pipe
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Executes all executable strings that don't involve a redirect or a pipe
+Forks and executes based on the string
+
+Output: void
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void execute(char* input) {
   if (strncmp(input, "cd", 2) == 0) {
     char* new = &input[3];
@@ -85,7 +111,13 @@ void execute(char* input) {
   return;
 }
 
-//redirects stdout
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Redirects the first input into 2nd file, overwrites
+
+Output: void
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void redirectout(char *input) {
   char** separated = malloc(2 * sizeof(char *));
   separated = separateinput(input);
@@ -97,7 +129,13 @@ void redirectout(char *input) {
   return;
 }
 
-//redirects stdin
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Redirects stdin into the first parameter
+
+Output: void
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void redirectin(char *input) {
   char** separated = malloc(2 * sizeof(char *));
   separated = separateinput(input);
@@ -109,7 +147,14 @@ void redirectin(char *input) {
   return;
 }
 
-//executes pipes
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Executes pipes using popen()
+Executes first comment on FILE * into 2nd parameter
+
+Output: void
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 void executepipe(char *input) {
   char** separated = malloc(2 * sizeof(char *));
   separated = separateinput(input);
@@ -123,11 +168,18 @@ void executepipe(char *input) {
   return;
 }
 
-//checks if the executable string has a redirect or a pipe
-//0 = None
-//1 = >
-//2 = <
-//3 = |
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input: char *
+
+Checks if the executable string has a redirect or a pipe
+Returns in for what the executable arg is
+0 -> None
+1 -> '>'
+2 -> '<'
+3 -> '|'
+
+Output: int
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 int check(char* input) {
   char *found = strpbrk(input, "><|");
   if (found) {
@@ -146,7 +198,8 @@ int check(char* input) {
   }
 }
 
-//runs the shell
+//Main Method
+//Asks for user input and reads stdin accordingly
 int main() {
   while (1) {
     printf("Write a command: ");
