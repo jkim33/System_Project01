@@ -24,9 +24,10 @@ Our shell mimics what a standard bash shell can do, taking in user input and all
 
 ### BUGS and ISSUES
 Features yet to be implemented:
-  Stacking Redirection -- We have not fully implemented the redirection options, as the shell cannot mimic the standard shell with double redirection. e.g. wc < foo > woo will not fully execute.
 
-  Double Redirection -- Our shell only replaces the inputs that we provide for redirection, but is unable to append to the output. It is not capable of handling calls such as '<<' or '>>'.
+  **_Stacking Redirection_** -- We have not fully implemented the redirection options, as the shell cannot mimic the standard shell with double redirection. e.g. `wc < foo > woo` will not fully execute on its own.
+
+  **_Double Redirection_** -- Our shell only replaces the inputs that we provide for redirection, but is unable to append to the output. It is not capable of handling calls such as `<<` or `>>`.
 
 ### Function Headers
 
