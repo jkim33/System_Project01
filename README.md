@@ -16,6 +16,8 @@ Our shell mimics what a standard bash shell can do, taking in user input and all
 
    ..* **_cd_** -- Changes the current directory into a new directory by moving along the contents of the paths in the terminal being ran in. This function cannot be forked and ran through a child process, so it requires our own implementation.
 
+2. **Redirection and Pipes**
+
    ..* **_Semicolon commands_** -- The shell is able to run multiple commands using the semicolon ( ';' ) to separate commands. Our shell can run multiple commands in the order that they are written in.
    
    ..* **_Redirection_** -- The shell is able to redirect in and redirect out as a standard bash shell. Redirect out takes in the first command, and utilizes it for the second command. Redirect in redirects stdin from the 2nd parameter.
@@ -25,7 +27,7 @@ Our shell mimics what a standard bash shell can do, taking in user input and all
 ### BUGS and ISSUES
 Features yet to be implemented:
 
-  **_Stacking Redirection_** -- We have not fully implemented the redirection options, as the shell cannot mimic the standard shell with double redirection. e.g. `wc < foo > woo` will not fully execute on its own.
+  **_Stacking Redirection_** -- We have not fully implemented the redirection options, as the shell cannot mimic the standard shell with double redirection. e.g. `wc < foo > woo` will not fully execute on its own. In general, trying to stack multiple redirects or pipes will not work.
 
   **_Double Redirection_** -- Our shell only replaces the inputs that we provide for redirection, but is unable to append to the output. It is not capable of handling calls such as `<<` or `>>`.
 
@@ -33,7 +35,6 @@ Features yet to be implemented:
 
 ```C
 separate(char * input)
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
