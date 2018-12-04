@@ -1,5 +1,11 @@
-all:
-	gcc driver.c
+all: driver.o func.o
+	gcc driver.o func.o
+
+driver.o: driver.c func.h
+	gcc -c driver.c func.h
+
+func.o: func.c func.h
+	gcc -c func.c func.h
 
 run:
 	./a.out
