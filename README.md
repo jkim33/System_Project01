@@ -19,7 +19,8 @@ Our shell mimics what a standard bash shell can do, taking in user input and all
 ### BUGS and ISSUES
 
 
-###Function Headers
+### Function Headers
+
 `separate(char * input)`
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
