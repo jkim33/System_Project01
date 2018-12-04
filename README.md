@@ -5,9 +5,9 @@
 ## Our Shell
 
 Our shell mimics what a standard bash shell can do, taking in user input and allowing the user to interact with the contents of their terminal and directories. To test, simply type: 
-'''terminal
+```
 make test
-'''
+```
 ### Current Features
 
 1. **Terminal Commands**
