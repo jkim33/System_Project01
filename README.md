@@ -21,7 +21,9 @@ Our shell mimics what a standard bash shell can do, taking in user input and all
 
 ### Function Headers
 
-`separate(char * input)`
+```C
+separate(char * input)
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
@@ -31,7 +33,7 @@ Returns an array of executable strings
 Output: char **
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`separateinput(char * input)`
+separateinput(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 Takes in a string of executables
@@ -41,7 +43,7 @@ Outputs an array of executable terminal calls
 Output: char **
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`changedir(char * input)`
+changedir(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 Forks and changes the directory to the input value
@@ -50,7 +52,7 @@ Returns a void as we are only modifying the directory
 Output: returns void
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`execute(char * input)`
+execute(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
@@ -60,7 +62,7 @@ Forks and executes based on the string
 Output: void
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`redirectout(char * input)`
+redirectout(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
@@ -69,14 +71,14 @@ Redirects the first input into 2nd file, overwrites
 Output: void
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`redirectin(char * input)`
+redirectin(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 Redirects stdin into the first parameter
 Output: void
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`executepipe(char * input)`
+executepipe(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
@@ -86,7 +88,7 @@ Executes first comment on FILE * into 2nd parameter
 Output: void
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-`int check(char * input)`
+int check(char * input)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Input: char *
 
@@ -99,3 +101,4 @@ Returns in for what the executable arg is
 
 Output: int
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+```
